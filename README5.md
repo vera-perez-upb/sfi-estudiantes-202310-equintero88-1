@@ -1,0 +1,7 @@
+- Raspberry Pi Pico puede ser instalada vía git.
+- La placa tiene una alta flexibilidad en su sistema de Input/Output, y existen métodos para ajustar la congifuración de los pines y los dispositivos periféricos.
+- Existe una clase de ayuda "rp2040" en el momento de realizar el código que permite usar y conocer ciertas funcionalidades de la placa.
+- El botón de reinicio de la tarjeta (BOOTSEL) no puede ser leído con "digitalRead", como se hace convencionalmente. Sin embargo, si se establece el "BOOTSEL" como un booleano, puede ser leído el botón.
+- La Raspberry Pi Pico no trae en la placa una EEPROM, pero es simulada. La clase para acceder es: EEPROM." "
+- El sistema para interconectar sistemas de audio digitales I2S puede ser implentado creando un puerto al instanciar una variable I2S (cuenta con su propia clase API). Asimismo, se puede generar audio análogo de buena calidad usando las salidas PMW. (Clase API PMW). También pueden implementarse sistemas análogos de micrófonos con el sistema ADC. (ADC Input API)
+- 
