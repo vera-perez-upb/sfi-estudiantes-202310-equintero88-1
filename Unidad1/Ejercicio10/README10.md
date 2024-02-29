@@ -1,0 +1,1 @@
+1) La letra 0a corresponde a un salto de línea.
