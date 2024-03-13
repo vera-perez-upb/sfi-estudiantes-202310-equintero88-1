@@ -1,0 +1,3 @@
+1) El programa cuenta con 3 estados (SEC1, SEC2 y SEC3) y un pseudoestado (INIT), en el cual se configuran las condiciones iniciales. Cada estado está encargado de uno de los tres segundos.
+2) Los eventos son los condicionales "if" de cada uno de los estados. 
+3) Estos condicionales "if" tienen ciertas condiciones. Cuando estas se cumplen, se ejecutan las acciones, que en este caso son pasar de un estado a otro e imprimir el segundo al que corresponden.
