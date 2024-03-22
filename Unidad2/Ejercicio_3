@@ -1,0 +1,17 @@
+CÓDIGO DE MÁQUINA
+
+El programa que se ejecuta en Arduino funciona mediante una máquina de estados. INIT (pseudoestado donde se dan las condiciones iniciales),
+WAIT_INIT y SEND_EVENT. 
+En WAIT_INIT se chequea si hay datos en el puerto serial para ser leídos, y en caso de ser '1' lo lee y pasa al siguiente estado.
+En SEND_EVENT se realiza un control de tiempo y cada dos segundos se imprime un el número de la variable contador, que aumenta también 
+cada dos segundos. Existe también otro condicional que chequea constantemente si '2' se envió por el puerto serial, para que, en caso
+de que se haga, retorne al estado WAIT_INIT.
+
+CÓDIGO EN UNITY
+
+En el método Start() que se ejecuta solo al inicio del programa, se definen las conexiones con el puerto serial y la velocidad a la que
+se harán. En Update() se hace uso también de la máquina de estados y tiene la misma funcionalidad que el código de máquina.
+Solo que en este se programa para que los cambios de estado suceden cuando se ingresen teclas. Cuando se ingresa A, por ejemplo
+la variable  data se le asigna el valor de '1' (0x31) y con _serial.Port.Write(data, 0, 1) se escribe en el puerto serial este dato,
+que en el código de máquina es el "trigger" para que pase al siguiente estado.
+En el siguiente estado se aplica la mism lógica para que cuando se presione B se envié el '2' y vuelva al estado anterior.

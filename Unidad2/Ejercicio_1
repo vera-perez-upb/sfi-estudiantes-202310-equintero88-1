@@ -1,0 +1,10 @@
+1) ¿Por qué es importante considerar las propiedades PortName y BaudRate?
+
+PortName es importante pues si no se coloca, simplemente la placa no será reconocida. Es importante además nombrarla con el puerto correcto. En el código de la página, es "COM3", en mi computadora es "COM13".
+Para experimentar probé colocando el "COM3" y salió el error: IOException: The port `COM3' does not exist.
+
+BaudRate es importante porque define la velocidad de transmisión por el puerto serial. Si no se define esta puede tener errores o directamente no enviar o recibir datos.
+
+2) ¿Qué relación tienen las propiedades anteriores con el controlador?
+
+Son las propiedades que permiten el uso del controlador.

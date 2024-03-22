@@ -1,0 +1,15 @@
+1) ¿Qué pasaría si al momento de ejecutar la instrucción int numData = _serialPort.Read(buffer, 0, 20); solo han llegado 10 de los 20 bytes del mensaje?
+
+La función Read() trata de leer los bytes que se le especifican, pero si no están completos, leerá los 10 que están disponibles y esperará hasta que los 20 datos estén 
+disponibles. En pocas palabras, el programa se bloqueará.
+
+2) ¿Cómo puede hacer tu programa para saber que ya tiene el mensaje completo? 
+¿Cómo se podría garantizar que antes de hacer la operación Read tenga los 16 bytes listos para ser leídos? 
+
+Podría usar un if (_serialPort.BytesToRead > 19), para asegurarse de que cuando se ejecute la línea int numData = _serialPort.Read(buffer, 0, 20); hayan al menos 20 
+datos para ser leídos, que es el mensaje completo.
+
+3) ¿Cómo haces para saber que el mensaje enviado está completo o faltan bytes por recibir?
+
+Podría implementarse un protocolo de tiempo de espera en caso de que los mensajes tengan mayor longitud, para así asegurarse que se reciba completo.
+Si en un tiempo definido no han ingresado más bytes, podría considerarse que el mensaje ya ha llegado completo.
