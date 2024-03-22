@@ -1,0 +1,69 @@
+String btnState(uint8_t btnState)
+{
+    if(btnState == HIGH)
+    {
+        return "OFF";
+    }
+    else
+        return "ON";
+}
+
+void task()
+{
+    enum class TaskStates
+    {
+        INIT,
+        WAIT_COMMANDS
+    };
+    static TaskStates taskState = TaskStates::INIT;
+    constexpr uint8_t led = 25;
+    static uint32_t previous = 0;
+
+
+    switch (taskState)
+    {
+        case TaskStates::INIT:
+        {
+            Serial.begin(115200);
+            pinMode(led, OUTPUT);
+            digitalWrite(led, LOW);
+            taskState = TaskStates::WAIT_COMMANDS;
+            break;
+        }
+        case TaskStates::WAIT_COMMANDS:
+        {
+            uint32_t current = millis();
+           
+            if ((current - previous) > 3000)
+            {
+            if (Serial.available() > 0)
+            {
+                String command = Serial.readStringUntil('\n');
+                if (command == "ledON")
+                {
+                    digitalWrite(led, HIGH);
+                }
+                else if (command == "ledOFF")
+                {
+                    digitalWrite(led, LOW);
+                }
+            }
+            }
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
+void setup()
+{
+  task();
+}
+
+void loop()
+{
+  task();
+}
